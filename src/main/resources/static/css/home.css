@@ -1,0 +1,75 @@
+/*
+Unidades de medida:
+-vh:1/100
+-&:Respecto al elemento padre
+-px: pixels
+-cm
+-box-sizing= alto+espacio+borde
+
+*/
+.container{
+    height: 100vh;
+    /*width: 100vh;*/
+    background-image: url(../images/background.png);
+    background-size: cover; 
+    padding-left: 5%;
+    padding-right: 5%;
+    position: relative;
+}
+.navbar{
+    width: 100%;
+    height: 15 vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.logo{
+    width: 160px;
+    cursor:pointer;
+}
+
+nav{
+    flex:1;
+    padding-left: 60px;
+}
+
+nav ul li{
+    display:inline-block;
+    list-style: none;
+    margin: 0px 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #cc00cc;
+}
+
+.content{
+    margin-top: 10%;
+    margin-left: 10%;
+    display: flex;
+}
+
+.content h1{
+    font-size: 60px;
+    font-weight: 100px;
+    margin-top: 24px;
+    margin-bottom: 15px;
+    color: #660066;
+}
+
+.content p{
+    font-size: 20px;
+    font-weight: 100px;
+    margin-top: 24px;
+    margin-bottom: 15px;
+    color: #9F1EF8;
+}
+
+.content .text{
+    margin-right: 100px;
+}
+
+.content .model{
+    height: 60vh;
+}
