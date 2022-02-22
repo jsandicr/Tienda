@@ -6,13 +6,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1 th:text="${titulo}"></h1>
-        <table>
-            <th:block th:each="user : ${personas}">
-            <tr>
-                <td th:text="${user.getEmail}"></td>
-            </tr>
-            </th:block>
+    <h1>Lista de Personas</h1>
+    <a th:href="@{/guardarPersona}">Nueva Persona</a>
+    <div th:if="${personas!=null or !personas.empty}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Modificar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.apellido1}"/>
+                    <td th:text="${persona.apellido2}"/>
+                    <td th:text="${persona.email}"/>
+                    <td th:text="${persona.telefono}"/>
+                    <td><a th:href="@{/modificarPersona/} + ${persona.id}">Modificar</a></td>
+                </tr>
+            </tbody>
         </table>
+    </div>
+    <div th:if="${personas==null or personas.empty}">
+        <p>No hay personas en este momento</p>
+    </div>
     </body>
 </html>

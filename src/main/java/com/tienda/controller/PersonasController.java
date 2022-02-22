@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PersonasController{
@@ -20,5 +22,19 @@ public class PersonasController{
         model.addAttribute("personas",listaPersonas);
         System.out.println("Registros\n"+listaPersonas);
         return "personas";
+    }
+
+    @GetMapping("/modificarPersona/{id}")
+    public String modificarPersona(@PathVariable Long id, Model model){
+        Persona persona=personaService.getPersonById(id);
+        model.addAttribute("persona", persona);
+        System.out.println(persona);
+        return "modificarPersona";
+    }
+
+    @PostMapping("/guardarPersona")
+    public String guardarPersona(Persona persona){
+        personaService.savePerson(persona);
+        return "redirect:/personas";
     }
 }
