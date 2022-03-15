@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+    <head th:replace="layout/template::head"></head>
     <body>
-    <h1>Lista de Personas</h1>
-    <a th:href="@{/guardarPersona}">Nueva Persona</a>
-    <div th:if="${personas!=null or !personas.empty}">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
-                    <th>Modificar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="persona : ${personas}">
-                    <td th:text="${persona.apellido1}"/>
-                    <td th:text="${persona.apellido2}"/>
-                    <td th:text="${persona.email}"/>
-                    <td th:text="${persona.telefono}"/>
-                    <td><a th:href="@{/modificarPersona/} + ${persona.id}">Modificar</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div th:if="${personas==null or personas.empty}">
-        <p>No hay personas en este momento</p>
+        <header th:replace="layout/template::header"/>
+        <div class="container">
+            <h1>Lista de Personas</h1>
+                <a th:href="@{/agregarPersona}">
+                    <button type="button" class="btn btn-outline-success">Nueva Persona</button>
+                </a>
+            <div th:if="${personas!=null or !personas.empty}">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Apellido Paterno</th>
+                            <th scope="col">Apellido Materno</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Pais</th>
+                            <th scope="col">Modificar</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr scope="row" th:each="persona : ${personas}">
+                            <td th:text="${persona.getApellido1}"/>
+                            <td th:text="${persona.getApellido2}"/>
+                            <td th:text="${persona.getEmail}"/>
+                            <td th:text="${persona.getTelefono}"/>
+                            <td th:text="${persona.getPais.getPais}"/>
+                            <td>
+                                <a th:href="@{/modificarPersona/} + ${persona.id}">
+                                    <button type="button" class="btn btn-outline-warning">Modificar</button>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{/eliminarPersona/} + ${persona.id}">
+                                    <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${personas==null or personas.empty}">
+                <p>No hay personas en este momento</p>
+            </div>
     </div>
     </body>
 </html>

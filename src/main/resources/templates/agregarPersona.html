@@ -1,30 +1,49 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/template::head"></head>
     <body>
-        <header th:replace="layout/plantilla :: header"/>
+        <header th:replace="layout/template::header"/>
+        <div class="container">
         <h2>Ingresar Persona</h2>
-        <a th:href="@{/}">Regresar</a>
+        <a th:href="@{/personas}">
+            <button type="button" class="btn btn-light">
+                < Regresar
+            </button>
+        </a>
         <br/>
-        <form th:action="@{/savePersona}" method="post" th:object="${persona}">
-            <label for="apellido1">Apellido Paterno:</label>
-            <input type="text" name="apellido1"/>
-            <br>
-            <label for="apellido2">Apellido Materno:</label>
-            <input type="text" name="apellido2"/>
-            <br>
-            <label for="email">Email:</label>
-            <input type="text" name="email" />
-            <br>
-            <label for="telefono">Telefono:</label>
-            <input type="text" name="telefono" />
-            <br>
-            <input type="submit" name="guardar" value="Guardar">
+        <!-- Modificar el form -->
+        <form th:action="@{/guardarPersona}" method="post" th:object="${persona}">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="container">
+                <div class="form-group">
+                    <label for="apellido1">Apellido Paterno</label>
+                    <input type="text" class="form-control" name="apellido1" th:field="*{apellido1}"/>
+                </div>
+                <div class="form-group">
+                    <label for="apellido2">Apellido Materno</label>
+                    <input type="text" class="form-control" name="apellido2" th:field="*{apellido2}"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" name="email" th:field="*{email}"/>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" class="form-control" name="telefono" th:field="*{telefono}"/>
+                </div>
+                <label for="pais">Pais</label>
+                <div clas="col-sm-10">
+                    <select th:field="*{pais}" class="form-control form-control-sm col-md-6" id="pais">
+                        <option th:each="x:${paises}"
+                                th:value="${x.id}"
+                                th:text="${x.pais}"/>
+                    </select>
+                </div>
+                <br/>
+                <input class="btn btn-outline-primary" type="submit" name="guardar" value="Submit"/>
+            </div>
         </form>
-        <footer th:replace="layout/plantilla ::footer"/>
+        </div>
+        <footer th:replace="layout/template::footer"/>
     </body>
 </html>
