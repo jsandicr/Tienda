@@ -14,14 +14,14 @@
                 <form>
                     <div class="d-flex">
                         <input class="form-control m-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <button th:text="#{plantilla.buscar}" class="btn btn-outline-success my-2 my-sm-0" type="submit"></button>
                     </div>
                 </form>
             </nav>
             
             <footer th:fragment="footer" class="bg-dark text-white fixed-bottom">
                 <div>
-                    <p class="text-center">@Copyright</p>
+                    <p th:text="#{plantilla.derechos}" class="text-center"></p>
                 </div>
             </footer>
         </header>

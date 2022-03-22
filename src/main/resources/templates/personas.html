@@ -4,21 +4,21 @@
     <body>
         <header th:replace="layout/template::header"/>
         <div class="container">
-            <h1>Lista de Personas</h1>
+            <h1 th:text="#{index.titulo}">Lista de Personas</h1>
                 <a th:href="@{/agregarPersona}">
-                    <button type="button" class="btn btn-outline-success">Nueva Persona</button>
+                    <button th:text="#{personas.nueva}" type="button" class="btn btn-outline-success"></button>
                 </a>
             <div th:if="${personas!=null or !personas.empty}">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Apellido Paterno</th>
-                            <th scope="col">Apellido Materno</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Pais</th>
-                            <th scope="col">Modificar</th>
-                            <th scope="col">Eliminar</th>
+                            <th th:text="#{personas.apellidoPaterno}" scope="col"></th>
+                            <th th:text="#{personas.apellidoMaterno}" scope="col"></th>
+                            <th th:text="#{personas.email}" scope="col"></th>
+                            <th th:text="#{personas.telefono}" scope="col"></th>
+                            <th th:text="#{personas.pais}" scope="col"></th>
+                            <th th:text="#{personas.modificar}" scope="col"></th>
+                            <th th:text="#{personas.eliminar}" scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,12 +30,12 @@
                             <td th:text="${persona.getPais.getPais}"/>
                             <td>
                                 <a th:href="@{/modificarPersona/} + ${persona.id}">
-                                    <button type="button" class="btn btn-outline-warning">Modificar</button>
+                                    <button th:text="#{personas.modificar}" type="button" class="btn btn-outline-warning"></button>
                                 </a>
                             </td>
                             <td>
                                 <a th:href="@{/eliminarPersona/} + ${persona.id}">
-                                    <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                                    <button th:text="#{personas.eliminar}" type="button" class="btn btn-outline-danger"></button>
                                 </a>
                             </td>
                         </tr>
