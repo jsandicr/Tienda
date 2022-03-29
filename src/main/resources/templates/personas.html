@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head th:replace="layout/template::head"></head>
     <body>
         <header th:replace="layout/template::header"/>
         <div class="container">
             <h1 th:text="#{index.titulo}">Lista de Personas</h1>
-                <a th:href="@{/agregarPersona}">
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregarPersona}">
                     <button th:text="#{personas.nueva}" type="button" class="btn btn-outline-success"></button>
                 </a>
             <div th:if="${personas!=null or !personas.empty}">
@@ -17,8 +18,8 @@
                             <th th:text="#{personas.email}" scope="col"></th>
                             <th th:text="#{personas.telefono}" scope="col"></th>
                             <th th:text="#{personas.pais}" scope="col"></th>
-                            <th th:text="#{personas.modificar}" scope="col"></th>
-                            <th th:text="#{personas.eliminar}" scope="col"></th>
+                            <th sec:authorize="hasRole('ADMIN')" th:text="#{personas.modificar}" scope="col"></th>
+                            <th sec:authorize="hasRole('ADMIN')" th:text="#{personas.eliminar}" scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,12 +29,12 @@
                             <td th:text="${persona.getEmail}"/>
                             <td th:text="${persona.getTelefono}"/>
                             <td th:text="${persona.getPais.getPais}"/>
-                            <td>
+                            <td sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a th:href="@{/modificarPersona/} + ${persona.id}">
                                     <button th:text="#{personas.modificar}" type="button" class="btn btn-outline-warning"></button>
                                 </a>
                             </td>
-                            <td>
+                            <td sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a th:href="@{/eliminarPersona/} + ${persona.id}">
                                     <button th:text="#{personas.eliminar}" type="button" class="btn btn-outline-danger"></button>
                                 </a>

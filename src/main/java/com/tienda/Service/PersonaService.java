@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonaService implements IPersonaService{
 
-    //Inyeccion de dependencias
     @Autowired
     private PersonaRepository personaRepository;
     
@@ -31,5 +30,10 @@ public class PersonaService implements IPersonaService{
     @Override
     public void delete(long id) {
         personaRepository.deleteById(id);
+    }
+
+    @Override
+    public Persona findByApellido1(String apellido1) {
+        return personaRepository.findByApellido1(apellido1);
     }
 }
