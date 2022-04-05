@@ -11,10 +11,11 @@
         <header th:fragment="header">
             <nav class="navbar navbar-light bg-light p-2">
                 <a class="navbar-brand">Tienda</a>
+                <p sec:authorize="isAuthenticated()"></p>
                 <form>
                     <div class="d-flex" sec:authorize="hasRole('ROLE_VENDEDOR') or hasRole('USER')">
                         <form method="POST" th:action="@{/logout}">
-                            <a class="btn btn-outline-danger" th:href="@{/login}" onclick="this.parentNode.submit();">Loguot</a>
+                            <a class="btn btn-outline-danger" th:href="@{/login}">Loguot</a>
                         </form>
                         <button sec:authorize="hasRole('ROLE_ADMIN')" class='btn btn-outline-warning mx-2'>Admin<button>
                     </div>
