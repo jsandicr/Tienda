@@ -9,22 +9,19 @@
     </head>
     <body>
         <header th:fragment="header">
-            <nav class="navbar navbar-light bg-light p-2">
-                <a class="navbar-brand">Tienda</a>
-                <p sec:authorize="isAuthenticated()"></p>
-                <form>
-                    <div class="d-flex" sec:authorize="hasRole('ROLE_VENDEDOR') or hasRole('USER')">
-                        <form method="POST" th:action="@{/logout}">
-                            <a class="btn btn-outline-danger" th:href="@{/login}">Loguot</a>
-                        </form>
-                        <button sec:authorize="hasRole('ROLE_ADMIN')" class='btn btn-outline-warning mx-2'>Admin<button>
-                    </div>
-                </form>
+            <nav class="d-flex justify-content-between navbar navbar-light bg-light p-2">
+                <a class="navbar-brand w-50">Tienda</a>
+                <div class="d-flex ms-5 p-0">
+                    <form method="POST" th:action="@{/logout}">
+                        <a class="btn btn-outline-danger" th:href="@{/login}">Loguot</a>
+                    </form>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" class='btn btn-outline-warning mx-2' th:href="@{/ventas}">Admin<a>
+                </div>
             </nav>
             
             <footer th:fragment="footer" class="bg-dark text-white fixed-bottom">
                 <div>
-                    <a th:href="@{/(lang=es)}">ES</a> | <a th:href="@{/(lang=en)}">EN</a> |
+                    <a href="?lang=es">ES</a> | <a href="?lang=en" >EN</a> |
                     USER:<span sec:authentication="name">xx</span>
                     ROLE: <span sec:authentication="principal.authorities">s</span>
                     <p th:text="#{plantilla.derechos}" class="text-center"></p>

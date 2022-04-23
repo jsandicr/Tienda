@@ -50,7 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .formLogin()
                 .defaultSuccessUrl("/personas")
                 .and()
-                .exceptionHandling().accessDeniedPage("/errores/403");
-                        
+                .exceptionHandling().accessDeniedPage("/errores/403");                
     }
 }

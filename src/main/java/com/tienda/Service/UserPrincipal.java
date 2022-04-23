@@ -4,6 +4,7 @@ import com.tienda.entity.Persona;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,7 @@ public class UserPrincipal implements UserDetails{
         
         this.persona.getPermissionList().forEach(p->{
             GrantedAuthority authority = new SimpleGrantedAuthority(p);
+            System.out.println(authority);
             authorities.add(authority);
         });
         

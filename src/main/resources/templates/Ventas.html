@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tienda</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav th:replace="layout/template::header"/>
+        <div class="container d-flex flex-column align-items-center">
+            <h1 class="text-center">Reportes de ventas</h1>
+            <form th:action="@{/ventas/download}" class="mt-5">
+                <input type="hidden" th:text="${fechaInicio}"/>
+                <input type="hidden" th:text="${fechaFin}"/>
+                <input type="hidden" th:text="${tipo}"/>
+                <button class="btn btn-outline-primary" type="submit">Obtener Reporte</button>
+            </form>
+        </div>
+    </body>
+</html>
